@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ioai.indabaxniger.com/"],
+    allow_origins=["https://www.ioai.indabaxniger.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -72,3 +72,4 @@ def get_all_tokens():
     res = supabase.table("tokens").select("*").execute()
 
     return res.data
+
