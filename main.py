@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://ioai.indabaxniger.com/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -70,4 +70,5 @@ def remove_candidate(candidate_id: int):
 @app.get("/tokens")
 def get_all_tokens():
     res = supabase.table("tokens").select("*").execute()
+
     return res.data
