@@ -14,6 +14,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.options("/{path:path}")
+def preflight_handler(path: str):
+    return {}
+
+
 
 @app.post("/candidate")
 def register_candidate(candidate: dict):
@@ -72,4 +77,5 @@ def get_all_tokens():
     res = supabase.table("tokens").select("*").execute()
 
     return res.data
+
 
