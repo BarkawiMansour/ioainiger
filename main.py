@@ -6,8 +6,10 @@ from backend.utils import delete_candidate
 
 app = FastAPI()
 
+# Autoriser uniquement ton domaine WordPress
 origins = [
-    "https://ioai.indabaxniger.com",  # ton site WordPress
+    "https://ioai.indabaxniger.com",
+    "https://www.ioai.indabaxniger.com"
 ]
 
 app.add_middleware(
@@ -81,6 +83,7 @@ def get_all_tokens():
     res = supabase.table("tokens").select("*").execute()
 
     return res.data
+
 
 
 
