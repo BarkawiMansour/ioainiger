@@ -6,9 +6,13 @@ from backend.utils import delete_candidate
 
 app = FastAPI()
 
+origins = [
+    "https://ioai.indabaxniger.com",  # ton site WordPress
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://www.ioai.indabaxniger.com"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -77,5 +81,6 @@ def get_all_tokens():
     res = supabase.table("tokens").select("*").execute()
 
     return res.data
+
 
 
