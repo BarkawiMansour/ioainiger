@@ -80,9 +80,10 @@ def remove_candidate(candidate_id: int):
 # --- Route pour tous les tokens ---
 @app.get("/tokens")
 def get_all_tokens():
-    res = supabase.table("tokens").select("*").execute()
+    res = supabase.table("tokens").select("*").limit(5000).execute()
 
     return res.data
+
 
 
 
