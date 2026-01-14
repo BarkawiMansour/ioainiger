@@ -78,11 +78,25 @@ def remove_candidate(candidate_id: int):
 
 
 # --- Route pour tous les tokens ---
+# --- Route pour tous les tokens ---
 @app.get("/tokens")
 def get_all_tokens():
-    res = supabase.table("tokens").select("*").limit(5000).execute()
+    all_tokens = []
+    start = 0
+    batch_size = 1000
 
-    return res.data
+    while True:
+        # Récupère un lot de tokens
+        res = supabase.table("tokens").select("*").range(start, start + batch_size - 1).execute()
+        batch = res.data
+        if not batch:
+            break  # stop quand il n'y a plus de données
+        all_tokens.extend(batch)
+        start += batch_size
+
+    return all_tokens
+
+
 
 
 
